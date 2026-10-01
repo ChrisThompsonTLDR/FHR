@@ -13,8 +13,8 @@ maintainer  = "ForgeHub Project"
 # whether a re-download is needed.
 
 [formats]
-".gltf" = { handler = "gltf-scene", build = "c022c79" }
-".glb"  = { handler = "gltf-scene", build = "c022c79" }
+".gltf" = { handler = "gltf-scene", build = "99019a5" }
+".glb"  = { handler = "gltf-scene", build = "99019a5" }
 ".csv"  = { handler = "csv", build = "3924391" }
 ".ipynb" = { handler = "ipynb", build = "3924391" }
 ".obj"  = { handler = "obj", build = "c022c79" }
