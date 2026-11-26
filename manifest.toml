@@ -75,7 +75,7 @@ maintainer  = "ForgeHub Project"
 # `--web` shell via the mount() contract. See SPEC-RENDERING.md §2.
 
 [assets.renderers]
-"gltf-scene" = "https://github.com/forgehubproject/fhr/releases/download/gltf-scene-latest/renderer-gltf-scene.js"
+"gltf-scene" = "https://github.com/ChrisThompsonTLDR/FHR/releases/download/gltf-scene-latest/renderer-gltf-scene.js"
 "csv"        = "https://github.com/forgehubproject/fhr/releases/download/csv-latest/renderer-csv.js"
 "ipynb"      = "https://github.com/forgehubproject/fhr/releases/download/ipynb-latest/renderer-ipynb.js"
-"obj"        = "https://github.com/forgehubproject/fhr/releases/download/obj-latest/renderer-obj.js"
+"obj"        = "https://github.com/ChrisThompsonTLDR/FHR/releases/download/obj-latest/renderer-obj.js"
