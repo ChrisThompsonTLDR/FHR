@@ -49,6 +49,24 @@ describe("objectsByNodeIndex", () => {
     }
   });
 
+  it("survives a vertex-colored primitive with no material", async () => {
+    // GLTFLoader clones its default material for COLOR_0 and associates the clone
+    // with the default material's record, which does not exist: the Map holds undefined.
+    const fixture = buildGltf({ nodes: [{ name: "Ant", mesh: 0 }] });
+    const json = fixture.json as {
+      meshes: { primitives: { attributes: Record<string, number>; material?: number }[] }[];
+      materials?: unknown;
+    };
+    for (const primitive of json.meshes[0]!.primitives) {
+      delete primitive.material;
+      primitive.attributes["COLOR_0"] = 0;
+    }
+    delete json.materials;
+    const { gltf } = await loadGltf(toArrayBuffer(toGlb(fixture)));
+    expect([...gltf.parser.associations.values()]).toContain(undefined);
+    expect(objectsByNodeIndex(gltf).get(0)![0]!.name).toBe("Ant");
+  });
+
   it("ignores material and texture associations", async () => {
     const { gltf } = await load({ nodes: [{ name: "A", mesh: 0 }] });
     const materialRecords = [...gltf.parser.associations.entries()].filter(
