@@ -19,7 +19,7 @@ import type { Material, Object3D, Texture } from "three";
 /** The parts of GLTFLoader's result this module needs (keeps tests light). */
 export type AssociatedGltf = {
   scene: Object3D;
-  parser: { associations: Map<Object3D | Material | Texture, { nodes?: number }> };
+  parser: { associations: Map<Object3D | Material | Texture, { nodes?: number } | undefined> };
 };
 
 const isObject3D = (v: unknown): v is Object3D =>
@@ -32,7 +32,7 @@ const isObject3D = (v: unknown): v is Object3D =>
 export function objectsByNodeIndex(gltf: AssociatedGltf): Map<number, Object3D[]> {
   const out = new Map<number, Object3D[]>();
   for (const [object, record] of gltf.parser.associations) {
-    if (record.nodes === undefined || !isObject3D(object)) continue;
+    if (record?.nodes === undefined || !isObject3D(object)) continue;
     const existing = out.get(record.nodes);
     if (existing) existing.push(object);
     else out.set(record.nodes, [object]);
